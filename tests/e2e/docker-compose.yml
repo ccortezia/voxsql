@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+
+  pg:
+    image: postgres:11.1
+    hostname: pg
+    networks:
+      - voxsql
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: voxsql
+      POSTGRES_USER: voxsql
+      POSTGRES_PASSWORD: voxsql
+    ports:
+      - "5432:5432"
+
+volumes:
+  pg-data:
+
+networks:
+  voxsql:
+    name: voxsql
