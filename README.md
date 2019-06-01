@@ -42,7 +42,7 @@ assert frames[0].body.source.startswith('insert into contacts')
 
 ## Design Goals and Inspiration
 
-`voxsql` strives to promote SQL as a first-class language within an application-centric project.
+`voxsql` strives to promote SQL as a first-class language within application-centric projects.
 
 As opposed to ORMs, `voxsql` does not try to encapsulate SQL within higher-level abstractions and in doing so it gives away some of the flexibility offered by application language constructs. At the same time, a SQL-first approach to persistence design brings some interesting project benefits, such as a lower barrier to the usage of advanced SQL features, easier inspection of queries, and application footprint and complexity reduction. In short, it would be a fair statement to assume `voxsql` brings simplicity at the cost of flexibility.
 
@@ -68,8 +68,10 @@ pytest
 ## Roadmap
 
 * Implement shell tool `voxsql` to make code generation easier.
-* Automate exception handling by means of a new `@error` tag.
+* Integrate to CircleCI.
+* Integrate to CodeClimate.
 * PyPI packaging.
+* Automate exception handling by means of a new `@error` tag.
 * Add support to `@dialect sqlite`
 * Add support to `@dialect mysql`
 * Add support to `@dialect xyz:version`
