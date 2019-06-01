@@ -11,7 +11,7 @@ Use cases for this library include but are not limited to:
 
 ## Getting Started
 
-`voxsql` works on annotated SQL files. Annotations are provided as Javadoc-like comments, and only properly framed SQL segments are considered by the library when parsing files. Below is an example annotated SQL snippet ready for `voxsql` to process:
+`voxsql` works on annotated SQL files. Annotations are provided as Javadoc-like comments, and only properly framed SQL segments are considered by the library when parsing files. Below is an example:
 
 ```sql
 /**
