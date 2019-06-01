@@ -11,7 +11,7 @@ Use cases for this library include but are not limited to:
 
 ## Getting Started
 
-Below is an excerpt of a SQL module containing `voxsql`-compliant annotations:
+`voxsql` works on annotated SQL files. Annotations are provided as Javadoc-like comments, and only properly framed SQL segments are considered by the library when parsing files. Below is an example annotated SQL snippet ready for `voxsql` to process:
 
 ```sql
 /**
@@ -31,11 +31,25 @@ Below is an excerpt of a SQL module containing `voxsql`-compliant annotations:
 }
 ```
 
-The SQL code above can be manipulated in application code in the following way:
+_Save the snippet above to `sample.sql` to run the examples below._
+
+## CLI Usage
+
+To digest the SQL file above using the CLI:
+
+```shell
+voxsql sample.sql
+```
+
+For more information run `voxsql --help`.
+
+## Direct Library Usage
+
+Below is an example on how you can manipulate the file above using the Python library directly:
 
 ```python
 from voxsql import parse
-frames = parse(open('my-module.sql').read())
+frames = parse(open('sample.sql').read())
 assert frames[0].header.name == 'add_contact'
 assert frames[0].body.source.startswith('insert into contacts')
 ```
@@ -67,7 +81,6 @@ pytest
 
 ## Roadmap
 
-* Implement shell tool `voxsql` to make code generation easier.
 * Integrate to CircleCI.
 * Integrate to CodeClimate.
 * PyPI packaging.
@@ -75,3 +88,5 @@ pytest
 * Add support to `@dialect sqlite`
 * Add support to `@dialect mysql`
 * Add support to `@dialect xyz:version`
+* Add sphinx docs
+* Add cli command for lanching the interpreter with bindings preloaded.
