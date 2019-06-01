@@ -2,7 +2,7 @@
 
 .DEFAULT_GOAL := help
 
-test.start:
+test.start.d:
 	docker-compose -p voxsql -f tests/e2e/docker-compose.yml up -d
 
 test.stop:
