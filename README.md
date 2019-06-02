@@ -2,6 +2,9 @@
 
 `voxsql` improves database application development by reading Javadoc-like comments in SQL code.
 
+[![CircleCI](https://circleci.com/gh/ccortezia/voxsql/tree/master.svg?style=svg)](https://circleci.com/gh/ccortezia/voxsql/tree/master)
+
+
 ## Use Cases
 
 Use cases for this library include but are not limited to:
