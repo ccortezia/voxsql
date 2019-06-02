@@ -2,7 +2,7 @@
 
 # voxsql
 
-`voxsql` improves database application development by reading Javadoc-like comments in SQL code.
+Generates application artifacts from documented SQL code.
 
 
 ## Use Cases
@@ -13,6 +13,12 @@ Use cases for this library include but are not limited to:
 * Instrumentation of test code to extend coverage analysis to SQL excerpts.
 
 ## Getting Started
+
+```
+pip install voxsql
+```
+
+## Basic Concepts
 
 `voxsql` works on annotated SQL files. Annotations are provided as Javadoc-like comments, and only properly framed SQL segments are considered by the library when parsing files. Below is an example:
 
@@ -84,7 +90,6 @@ pytest
 
 ## Roadmap
 
-* PyPI packaging.
 * Automate exception handling by means of a new `@error` tag.
 * Add support to `@dialect sqlite`
 * Add support to `@dialect mysql`

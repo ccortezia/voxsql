@@ -22,6 +22,4 @@ def add_contact(conn, contact_name=None):
     fetched = cursor.fetchall()
     cursor.close()
     return dict(name=fetched[0][0])
-
-assert add_contact("Max the Brawler") == {"name": "Max the Brawler"}
 ```

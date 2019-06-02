@@ -28,3 +28,18 @@ test.bash.pg:
 
 test.list:
 	docker-compose -f tests/e2e/docker-compose.yml -p voxsql ps
+
+build: clean
+	python setup.py sdist bdist_wheel
+
+clean:
+	rm -rf dist build voxsql.egg-info
+	find . -name "*.pyc" -delete
+	rm -f .coverage coverage.xml
+	rm -rf htmlcov .pytest_cache __pycache__
+
+publish:
+	twine upload dist/*
+
+publish.fake:
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
