@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: bd10e231f9746d0920c2c6ddae0b662363c8720ff89cab5684f2b5241421aa8c
+
     docker:
       - image: circleci/python:3.7.1
         environment:
@@ -16,11 +19,15 @@ jobs:
 
       - checkout
 
-      # Download and cache dependencies
+      - run:
+          name: Download CodeClimate Test Reporter Binary
+          command: |
+            wget -O cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+            chmod +x ./cc-test-reporter
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
@@ -39,7 +46,9 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            pytest --junit-xml=test-results/pytest/results.xml
+            ./cc-test-reporter before-build
+            pytest --junit-xml=test-results/pytest/results.xml --cov-report=xml
+            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
 
       - store_test_results:
           path: test-results
