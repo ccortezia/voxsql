@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/ccortezia/voxsql/tree/master.svg?style=svg)](https://circleci.com/gh/ccortezia/voxsql/tree/master) [![Maintainability](https://api.codeclimate.com/v1/badges/e923a96d98200af83af6/maintainability)](https://codeclimate.com/github/ccortezia/voxsql/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e923a96d98200af83af6/test_coverage)](https://codeclimate.com/github/ccortezia/voxsql/test_coverage)
+[![PyPI version](https://badge.fury.io/py/voxsql.svg)](https://badge.fury.io/py/voxsql) [![CircleCI](https://circleci.com/gh/ccortezia/voxsql/tree/master.svg?style=svg)](https://circleci.com/gh/ccortezia/voxsql/tree/master) [![Maintainability](https://api.codeclimate.com/v1/badges/e923a96d98200af83af6/maintainability)](https://codeclimate.com/github/ccortezia/voxsql/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/e923a96d98200af83af6/test_coverage)](https://codeclimate.com/github/ccortezia/voxsql/test_coverage)
 
 # voxsql
 
