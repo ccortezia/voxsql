@@ -84,8 +84,6 @@ pytest
 
 ## Roadmap
 
-* Integrate to CircleCI.
-* Integrate to CodeClimate.
 * PyPI packaging.
 * Automate exception handling by means of a new `@error` tag.
 * Add support to `@dialect sqlite`
