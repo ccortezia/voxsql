@@ -19,7 +19,8 @@ from .binders import Psycopg2BinderFactory
 
 """)
 @click.argument('sources', required=True, nargs=-1)
-def voxsql_cli(sources):
+@click.option('--interactive', '-i', is_flag=True, help='Loads the translated source into an interactive REPL session')
+def voxsql_cli(sources, interactive):
 
     source_items = []
 
@@ -45,4 +46,9 @@ def voxsql_cli(sources):
 
     contatenated_output = '\n'.join(output_items)
 
-    click.echo(contatenated_output)
+    if not interactive:
+        click.echo(contatenated_output)
+
+    if interactive:
+        import IPython
+        IPython.embed()
