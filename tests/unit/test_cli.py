@@ -9,11 +9,16 @@ HERE = os.path.abspath(os.path.join(__file__, os.path.pardir))
 
 EXPECTED = codeblock("""
     def add_contact(conn, contact_name=None):
+        import psycopg2
         sql_query = "insert into contacts (name) values (%(contact_name)s) returning id, name ;"
         sql_params = dict(contact_name=contact_name)
         cursor = conn.cursor()
         cursor.execute(sql_query, sql_params)
-        fetched = cursor.fetchall()
+        try:
+            fetched = cursor.fetchall()
+        except psycopg2.ProgrammingError as e:
+            if str(e) == "no results to fetch":
+                fetched = []
         cursor.close()
         return dict(contact_id=fetched[0][0], contact_name=fetched[0][1])
 
@@ -23,6 +28,7 @@ EXPECTED = codeblock("""
 def test_cli_from_stdin_should_generate_expected_content(sample_data_content):
     runner = CliRunner()
     result = runner.invoke(voxsql_cli, args=['-'], input=sample_data_content)
+    print(result.stdout)
     assert EXPECTED == result.stdout
 
 
