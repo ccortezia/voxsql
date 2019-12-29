@@ -91,6 +91,12 @@ pytest
 ## Roadmap
 
 * Automate exception handling by means of a new `@error` tag.
+* Raise spec mismatch during execution
+* Add support to `@retmode columns`
+* Add support to `@retmode column`
+* Add support to mandatory/optional parameter annotation
+* Solve design question about passing default column values as parameters
+* Solve design question about skipping reseting columns to avoid select-before-update issue
 * Add support to `@dialect sqlite`
 * Add support to `@dialect mysql`
 * Add support to `@dialect xyz:version`
