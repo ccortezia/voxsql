@@ -1,5 +1,3 @@
-.PHONY:
-
 .DEFAULT_GOAL := help
 
 test.infra.start:
@@ -31,6 +29,9 @@ test.infra.shell:
 
 test.ci:
 	circleci local execute --branch ${BRANCH} --job build
+
+test.run:
+	pipenv run pytest . ${ARGS}
 
 build: clean
 	python setup.py sdist bdist_wheel
