@@ -41,6 +41,8 @@ class GenericPythonTranslator:
         return f"dict({kwargs_str})"
 
     def _build_fnbody_return_statement(self, frame: ParsedFrame) -> str:
+        if frame.header.retmode == 'none':
+            return 'None'
         if frame.header.retmode == 'scalar':
             return 'fetched[0][0]'
         if frame.header.retmode == 'tuple':

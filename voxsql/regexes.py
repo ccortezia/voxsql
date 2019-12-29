@@ -35,7 +35,7 @@ REGEX_PARAM = re.compile(
 
 REGEX_RETMODE = re.compile(
     r'''@retmode\s+
-    (?P<retmode>(scalar|tuples|tuple|records|record))
+    (?P<retmode>(scalar|tuples|tuple|records|record|none))
     (?=^\s*@)?''',
     re.X)
 
