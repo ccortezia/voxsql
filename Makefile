@@ -29,6 +29,8 @@ test.infra.psql:
 test.infra.shell:
 	docker run -ti --rm -v voxsql_pg-data:/db -w /db ubuntu bash
 
+test.ci:
+	circleci local execute --branch ${BRANCH} --job build
 
 build: clean
 	python setup.py sdist bdist_wheel
