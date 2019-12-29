@@ -30,11 +30,16 @@ CASES = (
         codeblock(
             """
             def get_first_contact_name(conn):
+                import psycopg2
                 sql_query = "select name from contacts limit 1 ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return fetched[0][0]
             """
@@ -67,11 +72,16 @@ CASES = (
         codeblock(
             """
             def get_first_contact(conn):
+                import psycopg2
                 sql_query = "select * from contacts limit 1 ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return fetched[0]
             """
@@ -103,11 +113,16 @@ CASES = (
         codeblock(
             """
             def get_contacts(conn):
+                import psycopg2
                 sql_query = "select * from contacts ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return fetched
             """
@@ -140,11 +155,16 @@ CASES = (
         codeblock(
             """
             def get_first_contact(conn):
+                import psycopg2
                 sql_query = "select * from contacts limit 1 ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return dict()
             """
@@ -178,11 +198,16 @@ CASES = (
         codeblock(
             """
             def get_first_contact(conn):
+                import psycopg2
                 sql_query = "select * from contacts limit 1 ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return dict(name=fetched[0][0])
             """
@@ -217,11 +242,16 @@ CASES = (
         codeblock(
             """
             def get_first_contact(conn):
+                import psycopg2
                 sql_query = "select * from contacts limit 1 ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return dict(age=fetched[0][0], name=fetched[0][1])
             """
@@ -254,11 +284,16 @@ CASES = (
         codeblock(
             """
             def get_contacts(conn):
+                import psycopg2
                 sql_query = "select * from contacts limit 1 ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return [dict() for row in fetched]
             """
@@ -292,11 +327,16 @@ CASES = (
         codeblock(
             """
             def get_contacts(conn):
+                import psycopg2
                 sql_query = "select * from contacts limit 1 ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return [dict(name=row[0]) for row in fetched]
             """
@@ -331,11 +371,16 @@ CASES = (
         codeblock(
             """
             def get_contacts(conn):
+                import psycopg2
                 sql_query = "select * from contacts limit 1 ;"
                 sql_params = dict()
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return [dict(age=row[0], name=row[1]) for row in fetched]
             """
@@ -372,11 +417,16 @@ CASES = (
         codeblock(
             """
             def add_contact(conn, contact_name=None):
+                import psycopg2
                 sql_query = "insert into contacts (name) values (%(contact_name)s) returning name, age, created_at ;"
                 sql_params = dict(contact_name=contact_name)
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return dict(name=fetched[0][0], age=fetched[0][1], created_at=fetched[0][2])
             """
@@ -412,11 +462,16 @@ CASES = (
         codeblock(
             """
             def add_contact(conn, contact_name=None, age=None):
+                import psycopg2
                 sql_query = "insert into contacts (name, age) values (%(contact_name)s, %(age)s) returning name, age, created_at ;"
                 sql_params = dict(contact_name=contact_name, age=age)
                 cursor = conn.cursor()
                 cursor.execute(sql_query, sql_params)
-                fetched = cursor.fetchall()
+                try:
+                    fetched = cursor.fetchall()
+                except psycopg2.ProgrammingError as e:
+                    if str(e) == "no results to fetch":
+                        fetched = []
                 cursor.close()
                 return dict(name=fetched[0][0])
             """
