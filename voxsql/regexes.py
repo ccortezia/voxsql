@@ -27,7 +27,7 @@ REGEX_DIALECT = re.compile(
 
 REGEX_PARAM = re.compile(
     r'''@param\s+
-    (?P<name>[a-zA-Z_]+):\s+
+    (?P<name>[a-zA-Z_][a-zA-Z_0-9]+):\s+
     (?P<type>[a-zA-Z\[\]]+)
     (?:\s*-?\s*(?P<desc>.*?))
     (?=^\s*@|\s*\Z)''',
@@ -41,7 +41,7 @@ REGEX_RETMODE = re.compile(
 
 REGEX_RETVAL = re.compile(
     r'''@retval\s+
-    (?P<name>[a-zA-Z_]+):\s+
+    (?P<name>[a-zA-Z_][a-zA-Z_0-9]+):\s+
     (?P<type>[a-zA-Z\[\]]+)
     (?:\s*-?\s*(?P<desc>.*?))
     (?=^\s*@|\s*\Z)''',
