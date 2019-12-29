@@ -36,6 +36,7 @@ build: clean
 clean:
 	rm -rf dist build voxsql.egg-info
 	find . -name "*.pyc" -delete
+	find . -name "__pycache__" -delete
 	rm -f .coverage coverage.xml
 	rm -rf htmlcov .pytest_cache __pycache__
 
