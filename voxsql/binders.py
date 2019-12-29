@@ -20,11 +20,16 @@ class Psycopg2BinderFactory(BaseBinderFactory):
     frame_translator_cls = GenericPythonTranslator
     operation_template = """
         def {fn.sign_name}({fn.sign_params}):
+            import psycopg2
             sql_query = {fn.body_sql_query}
             sql_params = {fn.body_sql_params}
             cursor = conn.cursor()
             cursor.execute(sql_query, sql_params)
-            fetched = cursor.fetchall()
+            try:
+                fetched = cursor.fetchall()
+            except psycopg2.ProgrammingError as e:
+                if str(e) == "no results to fetch":
+                    fetched = []
             cursor.close()
             return {fn.body_return}
         """
