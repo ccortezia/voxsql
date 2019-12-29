@@ -43,6 +43,6 @@ def voxsql_cli(sources):
 
     output_items = [factory.create(frame) for frame in frames]
 
-    contatenated_output = '\n'.join(output_items)
+    contatenated_output = '\n\n'.join(output_items)
 
     click.echo(contatenated_output)
