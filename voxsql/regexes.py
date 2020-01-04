@@ -5,8 +5,7 @@ REGEX_FRAME = re.compile(
     r'''\/\*\*\s*?\s*?
     (?P<header>.*?)\*\/\s*
     {(?P<body>.*?)}
-    ''', re.S | re.M | re.X
-)
+    ''', re.S | re.M | re.X)
 
 REGEX_DESCRIPTION = re.compile(
     r'''(?P<desc>.*?)
