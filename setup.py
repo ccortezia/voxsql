@@ -26,7 +26,7 @@ setup(
     ],
     packages=find_packages(exclude=['tests', 'tests.*']),
     include_package_data=True,
-    install_requires=['Click'],
+    install_requires=['Click', 'Jinja2'],
     entry_points='''
         [console_scripts]
         voxsql=voxsql.cli:voxsql_cli

@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 
 [packages]
 click = "==7.0"
+jinja2 = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,6 +1,6 @@
 import click
 from .parser import parse
-from .binders import Psycopg2BinderFactory
+# from .binders import Psycopg2BinderFactory
 
 
 @click.command(help="""
@@ -39,10 +39,10 @@ def voxsql_cli(sources):
 
     frames = parse(concatenated_sources)
 
-    factory = Psycopg2BinderFactory()
+    from dataclasses import asdict
+    from jinja2 import Environment, PackageLoader
+    env = Environment(loader=PackageLoader('voxsql', 'templates'))
+    template = env.get_template('python-psycopg2/function-body.j2')
+    output = template.render(frames=[asdict(f) for f in frames])
 
-    output_items = [factory.create(frame) for frame in frames]
-
-    contatenated_output = '\n\n'.join(output_items)
-
-    click.echo(contatenated_output)
+    click.echo(output)

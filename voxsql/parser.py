@@ -19,7 +19,7 @@ __all__ = ['parse']
 # Public Symbols
 # --------------------------------------------------------------------------------------------------
 
-def parse(text):
+def parse(text: str) -> List['ParsedFrame']:
     return [
         ParsedFrame.fromdict({
             'base': {

@@ -1,0 +1,58 @@
+import psycopg2
+
+{% for frame in frames %}
+def {{ frame.header.name }}(
+    conn,
+    {% for param in frame.header.params -%}
+    {{ param.name }}=None,
+    {% endfor -%}
+    ):
+    """{{ frame.header.desc|indent(7) }}
+
+    {%- for param in frame.header.params %}
+    @param {{ param.name }}
+    {% endfor %}
+    """
+    sql_query = """
+    {{ frame.body.source|indent(4)|trim }}
+    """
+    sql_params = dict(
+        {% for param in frame.header.params -%}
+        {{ param.name }}={{ param.name }},
+        {% endfor -%}
+    )
+    cursor = conn.cursor()
+    cursor.execute(sql_query, sql_params)
+    try:
+        fetched = cursor.fetchall()
+    except psycopg2.ProgrammingError as e:
+        if str(e) == "no results to fetch":
+            fetched = []
+    cursor.close()
+    {%- if frame.header.retmode == 'none' %}
+    return None
+    {% elif frame.header.retmode == 'scalar' %}
+    return fetched[0][0]
+    {% elif frame.header.retmode == 'tuple' %}
+    return fetched[0]
+    {% elif frame.header.retmode == 'tuples' %}
+    return fetched
+    {% elif frame.header.retmode == 'record' %}
+    return dict(
+        {% for retval in frame.header.retvals -%}
+        {{retval.name}}=fetched[0][{{ loop.index0 }}],
+        {% endfor -%}
+    )
+    {% elif frame.header.retmode == 'records' %}
+    return [
+        dict(
+            {% for retval in frame.header.retvals -%}
+            {{retval.name}}=row[{{ loop.index0 }}],
+            {% endfor -%}
+        )
+        for row in fetched
+    ]
+    {% else %}
+    return fetched
+    {% endif %}
+{% endfor %}

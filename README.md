@@ -49,7 +49,9 @@ _Save the snippet above to `sample.sql` to run the examples below._
 To digest the SQL file above using the CLI:
 
 ```shell
-voxsql sample.sql
+cat queries.sql | voxsql -  # JSON output
+cat queries.sql | voxsql - --template=python-psycopg2.j2  # Python output from SQL (implicit JSON conversion step)
+cat queries.sql | voxsql - | voxsql --template=python-psycopg2.j2  # Python output from JSON
 ```
 
 For more information run `voxsql --help`.
