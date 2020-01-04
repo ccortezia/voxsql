@@ -1,6 +1,5 @@
 import click
 from .parser import parse
-# from .binders import Psycopg2BinderFactory
 
 
 @click.command(help="""
